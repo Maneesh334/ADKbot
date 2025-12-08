@@ -29,9 +29,6 @@ const Chat: React.FC = () => {
       style={{ background }}
     >
       <div className="h-full w-full md:w-8/10 md:h-8/10 rounded-lg">
-        <div className="text-sm font-semibold mb-2 ml-2 text-gray-400">
-          Sample suggestions:
-        </div>
 
         <CopilotChat
           className="h-full rounded-2xl max-w-6xl mx-auto"
