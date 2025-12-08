@@ -8,7 +8,7 @@ import { CopilotChat } from "@copilotkit/react-ui";
 const Page: React.FC = () => {
   return (
     <CopilotKit
-      runtimeUrl={process.env.NEXT_PUBLIC_API_BASE_URL} // <-- connects to https://a.onrender.com
+      runtimeUrl="/api/copilotkit" // <-- connects to https://a.onrender.com
       showDevConsole={false}
       agent="my_agent"
     >
