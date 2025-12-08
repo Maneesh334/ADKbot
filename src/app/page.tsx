@@ -2,16 +2,15 @@
 
 import React, { useState } from "react";
 import "@copilotkit/react-ui/styles.css";
-import { CopilotKit, useFrontendTool } from "@copilotkit/react-core";
+import { CopilotKit } from "@copilotkit/react-core";
 import { CopilotChat } from "@copilotkit/react-ui";
 
 const Page: React.FC = () => {
   return (
     <CopilotKit
-      // This should match your Next.js API route: src/app/api/copilotkit/route.ts
-      runtimeUrl="/api/copilotkit"
+      runtimeUrl={process.env.NEXT_PUBLIC_API_BASE_URL} // <-- connects to https://a.onrender.com
       showDevConsole={false}
-      agent="my_agent" // or "my_agent" – whatever you configured in your backend
+      agent="my_agent"
     >
       <Chat />
     </CopilotKit>
@@ -19,11 +18,9 @@ const Page: React.FC = () => {
 };
 
 const Chat: React.FC = () => {
-  // default to CopilotKit's background color via CSS variable
-  const [background, setBackground] = useState<string>(
+  const [background] = useState<string>(
     "var(--copilot-kit-background-color)"
   );
-
 
   return (
     <div
@@ -32,10 +29,16 @@ const Chat: React.FC = () => {
       style={{ background }}
     >
       <div className="h-full w-full md:w-8/10 md:h-8/10 rounded-lg">
-        
+        <div className="text-sm font-semibold mb-2 ml-2 text-gray-400">
+          Sample suggestions:
+        </div>
+
         <CopilotChat
           className="h-full rounded-2xl max-w-6xl mx-auto"
-          labels={{ initial: "Please enter a hospital name to find its CCN or a NPI to find the hospital type." }}
+          labels={{
+            initial:
+              "Please enter a hospital name to find its CCN or a NPI to find the hospital type.",
+          }}
           suggestions={[
             {
               title: "Find CCN for Bayonne Medical Center",
